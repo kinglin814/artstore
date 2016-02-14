@@ -13,6 +13,7 @@ class Admin::ProductsController < ApplicationController
 
 	  def new
 	  	@product = Product.new
+	  	@photo = @product.build_photo
 	  end
 	
 	  def create
@@ -33,7 +34,11 @@ class Admin::ProductsController < ApplicationController
 	  end
 	
 	  def edit
-	    
+	    if @product.photo.present?
+	    	@photo = @product.photo
+	    else
+	    	@photo = @product.build_photo
+	    end
 	  end
 	
 	  def destroy
@@ -48,7 +53,8 @@ class Admin::ProductsController < ApplicationController
 	  end
 
 	  def product_params
-	  	params.require(:product).permit(:title, :description, :quantity, :price)
+	  	params.require(:product).permit(:title, :description, :quantity, :price,
+		  																 photo_attributes: [:image, :id])
 	  end
 
 end
