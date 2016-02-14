@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 
+gem 'mini_magick'
+gem 'carrierwave'
 gem 'awesome_rails_console'
 gem 'devise'
 gem 'bootstrap-sass'
