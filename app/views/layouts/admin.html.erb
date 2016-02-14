@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BuyGoods</title>
+  <title>BuyGoods 後台</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -9,9 +9,18 @@
 <body>
 	<div class="container">
 		<%= render 'common/navbar' %>
-		<%= notice_message %>
-<%= yield %>
+		<div class="row">
+			<div class="col-md-2">
+				<ul class="nav nav-pills" style="max-width: 300px;">
+					<li><%= link_to "Products", admin_products_path %></li>
+				</ul>
+			</div>
+			<div class="col-md-10">
+				<%= yield %>
+			</div>
+		</div>
 	</div>
 
 </body>
 </html>
+

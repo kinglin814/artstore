@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 
+gem "font-awesome-rails"
 gem 'mini_magick'
 gem 'carrierwave'
 gem 'awesome_rails_console'
