@@ -9,4 +9,12 @@ class User < ActiveRecord::Base
   	is_admin
   end
 
+  def to_admin
+ 		self.update(is_admin: true)
+	end
+
+	def to_normal
+		self.update(is_admin: false)
+	end
+
 end

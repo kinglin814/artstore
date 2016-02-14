@@ -1,0 +1,36 @@
+<h2>User List</h2>
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Email</th>
+			<th>權限</th>
+			<th>功能</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+			<tr>
+				<td><%= user.id %></td>
+				<td><%= user.email %></td>
+				<td>
+					<% if user.admin? %>
+						Administrator
+					<% else %>
+						Normal
+					<% end %>
+				</td>
+				<td>
+					<% if user.id == 1 %>
+						Highest Admin
+					<% elsif user.admin? %>
+						<%= link_to "Convert to Normal", "#", class: "btn btn-info"  %>
+					<% else %>
+						<%= link_to "Convert to Admin", "#", class: "btn btn-success"  %>
+					<% end %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
