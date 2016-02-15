@@ -22,7 +22,7 @@
 					<% end %>
 				</td>
 				<td>
-					<% if user.id == 1 %>
+					<% if user.email == "alanivon@yahoo.com.tw" %>
 						Highest Admin
 					<% elsif user.admin? %>
 						<%= link_to "Convert to Normal", "#", class: "btn btn-info"  %>
