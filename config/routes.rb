@@ -22,7 +22,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :orders
+  resources :orders do
+    member do
+      post :pay_by_card
+    end
+  end
+
   # You can have the root of your site routed with "root"
   root 'products#index'
 

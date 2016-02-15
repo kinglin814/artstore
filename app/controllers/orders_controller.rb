@@ -18,6 +18,13 @@ class OrdersController < ApplicationController
 		@order_items = @order.items
 	end
 
+	def pay_by_card
+		@order = current_user.orders.find_by_token(params[:id])
+		@order.set_payment_with!("Credit Card")
+		@order.pay!
+		redirect_to "/", notice: "成功完成信用卡付款"
+	end
+
 	private
 
 	def order_params

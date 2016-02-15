@@ -25,4 +25,12 @@ class Order < ActiveRecord::Base
 		self.total = cart.total_price
 		self.save
 	end
+
+	def set_payment_with!(method)
+		self.update(payment_method: method)
+	end
+
+	def pay!
+		self.update(is_paid: true)
+	end
 end
