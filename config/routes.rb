@@ -12,7 +12,11 @@ Rails.application.routes.draw do
     end 
   end
 
-  resources :products
+  resources :products do
+    member do
+      post :add_to_cart
+    end
+  end
   # You can have the root of your site routed with "root"
   root 'products#index'
 
