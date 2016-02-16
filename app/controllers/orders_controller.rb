@@ -29,7 +29,8 @@ class OrdersController < ApplicationController
 		redirect_to account_orders_path, notice: "成功完成信用卡付款"
 	end
 
-	def pay2go_cc_notify
+
+		def pay2go_cc_notify
 		@order = Order.find_by_token(params[:id])
 		if params["Status"] == "SUCCESS"
 			@order.make_payment!
@@ -44,6 +45,7 @@ class OrdersController < ApplicationController
 			render text: "交易失敗"
 		end
 	end
+
 
 	private
 
