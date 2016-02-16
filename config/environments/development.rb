@@ -36,7 +36,9 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
-
+  config.after_initialize do
+    Pay2go.integration_mode = :development
+  end
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

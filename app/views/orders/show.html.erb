@@ -46,8 +46,10 @@
 				</tbody>
 			</table>
 			<% if !@order.is_paid? %>
-				<div class="pull-right">
-					<%= link_to "信用卡付款", pay_by_card_order_path(@order.token), method: :post, class: "btn btn-danger"  %>
+				<div class="pull-right" style="padding: 10px;">
+					<%= render "pay_by_credit_card", order: @order %>
+				</div>
+				<div class="pull-right" style="padding: 10px;">
 					<%= link_to "ATM付款", "#", class: "btn btn-danger"  %>
 				</div>
 			<% else %>
