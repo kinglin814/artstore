@@ -29,6 +29,12 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :account do
+    resources :orders
+  end
+
+
+
   resources :items, controller: "cart_items"
   # You can have the root of your site routed with "root"
   root 'products#index'
