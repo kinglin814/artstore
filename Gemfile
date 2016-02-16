@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+
+
+gem 'roadie', "2.4.3"
+gem	'letter_opener', group: :development
 gem 'devise-i18n'
 gem 'aasm'
 gem "font-awesome-rails"
