@@ -2,7 +2,7 @@ class CartItemsController < ApplicationController
 	before_action :authenticate_user!
 
 	def destroy
-		@item = current_cart.cart_items.find_by(product_id: params[:id])
+		@item = current_cart.find_cart_item(params[:id])
 		@product = @item.product
 		@item.destroy
 		flash[:success] = "已刪除#{@product.title}"
@@ -10,7 +10,7 @@ class CartItemsController < ApplicationController
 	end
 
 	def update
-		@item = current_cart.cart_items.find_by(product_id: params[:id])
+		@item = current_cart.find_cart_item(params[:id])
 		if @item.product.quantity >= item_params[:quantity].to_i
 			@item.update(item_params)
 			flash[:success] = "成功變更數量"
