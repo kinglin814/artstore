@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
 
 		def pay2go_cc_notify
 		@order = Order.find_by_token(params[:id])
-		if params["Status"] == "SUCCESS"    #如果傳回的訊息 true 狀態改成paid & is_paid = true ,method為credit card
+		if params["Status"] == "SUCCESS"    #如果傳回的訊息 true 狀態改成paid & is_paid = trueg ,method為credit card
 			@order.make_payment!							#if is_paid true 轉換頁面
 			@order.set_payment_with!("Credit Card")
 			if @order.is_paid?
