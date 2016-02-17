@@ -13,7 +13,7 @@ Rails.application.configure do
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
-   config.action_mailer.default_url_options = {host: 'salty-lowlands-85529.herokuapp.com'}
+  config.action_mailer.default_url_options = {host: 'salty-lowlands-85529.herokuapp.com'}
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
@@ -80,4 +80,16 @@ Rails.application.configure do
   config.after_initialize do
     Pay2go.integration_mode = :development
   end
+
+   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    port:           587,
+    address:        "smtp.mailgun.org",
+    user_name:      ENV["mailgun_user"],
+    password:       ENV["mailgun_secret"],
+    domain:         "sandboxd80330bef11c498592c20c38706ba35b.mailgun.org", # 你的 mailgun domain name
+
+    authentication: :plain,
+  }
+
 end
