@@ -21,4 +21,8 @@ module ApplicationHelper
     cart.items.size
   end
 
+  def render_order_time(order)
+    order.created_at.to_s(:long)
+  end
+
 end
