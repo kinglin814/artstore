@@ -6,10 +6,7 @@ class OrdersController < ApplicationController
 	def create
 		@order = current_user.orders.build(order_params)
 		if @order.save
-			@order.build_item_from_cart(current_cart)
-			@order.calculate_total!(current_cart)
-			current_cart.clean!
-			# OrderMailer.notify_order_placed(@order).deliver!
+			OrderPlacingService.new(@order, current_cart).order_placed
 			redirect_to order_path(@order.token)
 		else
 			render "carts/checkout"
