@@ -49,10 +49,10 @@ class OrdersController < ApplicationController
 		if json_data["Status"] == "SUCCESS"
 			@order.make_payment!
 			@order.set_payment_with!("ATM")
-			render text: "交易成功"
 		else
 			render text: "交易失敗"
 		end
+			render text: "交易失敗"
 	end
 
 
