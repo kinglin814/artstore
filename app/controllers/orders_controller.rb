@@ -47,7 +47,7 @@ class OrdersController < ApplicationController
 		@order = Order.find_by_token(params[:id])
 		json_data = JSON.parse(params["JSONData"])
 		if json_data["Status"] == "SUCCESS"
-			@order.set_payment_with("ATM")
+			@order.set_payment_with!("ATM")
 			@order.make_payment!
 			render text: "交易成功"
 		else
