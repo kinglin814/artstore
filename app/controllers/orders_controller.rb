@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
-	before_action :authenticate_user!, except: :pay2go_cc_notify
+	before_action :authenticate_user!, except: [:pay2go_cc_notify, :pay2go_atm_order]
 
-	protect_from_forgery except: :pay2go_cc_notify
+	protect_from_forgery except: [:pay2go_cc_notify, :pay2go_atm_order]
 
 	def create
 		@order = current_user.orders.build(order_params)
@@ -38,6 +38,18 @@ class OrdersController < ApplicationController
 			else
 				render text: "信用卡失敗"
 			end
+		else
+			render text: "交易失敗"
+		end
+	end
+
+	def pay2go_atm
+		@order = Order.find_by_token(params[:id])
+		json_data = JSON.parse(params["JSONData"])
+		if json_data["Status"] == "SUCCESS"
+			@order.set_payment_with("ATM")
+			@order.make_payment!
+			render text: "交易成功"
 		else
 			render text: "交易失敗"
 		end
